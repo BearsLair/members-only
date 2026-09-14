@@ -26,6 +26,16 @@ exports.validators = [
     .withMessage("First name must be less than 30 characters"),
   body("password")
     .trim()
+    .isStrongPassword({
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 1,
+    })
+    .withMessage(
+      "Password must contain 8 characters: at least 1 uppercase, 1 lowercase, 1 number, and 1 symbol.",
+    )
     .notEmpty()
     .withMessage("Password cannot be empty.")
     .isLength({ max: 30 })
