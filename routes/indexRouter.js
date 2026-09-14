@@ -1,7 +1,8 @@
 const { Router } = require("express");
 const indexRouter = Router();
 const membersController = require("../controllers/membersController");
-const validators = require("../middleware/validators");
+// validators must be destructured
+const { validators } = require("../middleware/validators");
 
 indexRouter.get("/", membersController.getHomePage);
 
