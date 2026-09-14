@@ -35,5 +35,11 @@ exports.validators = [
     .notEmpty()
     .withMessage("Confirmation password cannot be empty.")
     .isLength({ max: 30 })
-    .withMessage("Confirmation password must be less than 30 characters"),
+    .withMessage("Confirmation password must be less than 30 characters")
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error("Confirmation password does not match password.");
+      }
+      return true;
+    }),
 ];
