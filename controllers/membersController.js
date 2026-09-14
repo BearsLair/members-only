@@ -16,7 +16,8 @@ async function getSignUp(req, res) {
 
 async function postSignUp(req, res) {
   try {
-    // Post logic
+    console.log(req.body);
+    res.redirect("/");
   } catch (error) {
     console.error("Error posting sign up info: ", error);
   }

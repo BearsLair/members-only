@@ -6,4 +6,6 @@ indexRouter.get("/", membersController.getHomePage);
 
 indexRouter.get("/sign-up", membersController.getSignUp);
 
+indexRouter.post("/sign-up", membersController.postSignUp);
+
 module.exports = indexRouter;
