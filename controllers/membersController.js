@@ -22,13 +22,14 @@ async function postSignUp(req, res) {
     const errors = validationResult(req);
 
     // Stop execution and display errors if errors found
-    if (!error.isEmpty()) {
+    if (!errors.isEmpty()) {
       return res.status(400).render("sign-up", {
         errors: errors.array(), // Converts errors to array for iteration
         formData: req.body, // Passes back entered data so user doesn't re-enter inputs
       });
     }
 
+    // No errors? Continue.
     console.log(req.body);
     res.redirect("/");
   } catch (error) {
