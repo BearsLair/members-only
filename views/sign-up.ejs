@@ -14,13 +14,26 @@
       <input
         id="firstname"
         name="firstname"
+        value="<%= formData.firstname || '' %>"
         placeholder="firstname"
         type="text"
       />
       <label for="lastname">Last Name</label>
-      <input id="lastname" name="lastname" placeholder="lastname" type="text" />
+      <input
+        id="lastname"
+        name="lastname"
+        value="<%= formData.lastname || '' %>"
+        placeholder="lastname"
+        type="text"
+      />
       <label for="username">Username</label>
-      <input id="username" name="username" placeholder="username" type="text" />
+      <input
+        id="username"
+        name="username"
+        value="<%= formData.username || '' %>"
+        placeholder="username"
+        type="text"
+      />
       <label for="password">Password</label>
       <input id="password" name="password" type="password" />
       <button type="submit">Submit</button>
