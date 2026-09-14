@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
 
 async function getHomePage(req, res) {
   try {
@@ -21,6 +22,8 @@ async function postSignUp(req, res) {
     //retrieve validation errors from request
     const errors = validationResult(req);
 
+    console.log("errors: ", errors);
+
     // Stop execution and display errors if errors found
     if (!errors.isEmpty()) {
       return res.status(400).render("sign-up", {
@@ -30,7 +33,10 @@ async function postSignUp(req, res) {
     }
 
     // No errors? Continue.
-    console.log(req.body);
+    let data = req.body;
+    data.password = bcrypt.hashSync(req.body.password, 10);
+
+    console.log(data);
     res.redirect("/");
   } catch (error) {
     console.error("Error posting sign up info: ", error);
