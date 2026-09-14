@@ -30,4 +30,10 @@ exports.validators = [
     .withMessage("Password cannot be empty.")
     .isLength({ max: 30 })
     .withMessage("Password must be less than 30 characters"),
+  body("confirmpass")
+    .trim()
+    .notEmpty()
+    .withMessage("Confirmation password cannot be empty.")
+    .isLength({ max: 30 })
+    .withMessage("Confirmation password must be less than 30 characters"),
 ];
