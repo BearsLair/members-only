@@ -9,5 +9,12 @@
     <h1>Members Only Message Board</h1>
     <a href="/sign-up">Sign Up</a>
     <a href="/code">Full Membership</a>
+    <h3>Messages:</h3>
+    <ol>
+      <% locals.messages.forEach(msg => { %>
+        <p style="font-weight: bold;"><%= msg.title %> (<%= msg.date %>)</p>
+        <p><%= msg.message %></p>
+      <%}); %>
+    </ol>
   </body>
 </html>
