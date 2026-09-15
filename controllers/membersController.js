@@ -1,9 +1,13 @@
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
+const db = require("../db/query");
 
 async function getHomePage(req, res) {
   try {
-    res.render("home");
+    // db functions must be called (e.g. getAllMessages())
+    const messages = await db.getAllMessages();
+    console.log(messages);
+    res.render("home", { messages: messages });
   } catch (error) {
     console.error("Error retrieving home page: ", error);
   }
