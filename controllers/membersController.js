@@ -38,7 +38,10 @@ async function postSignUp(req, res) {
     let data = req.body;
     data.password = bcrypt.hashSync(req.body.password, 10);
 
-    console.log(data);
+    console.log("data input sent to db: ", data);
+
+    db.postUserData(data);
+
     res.redirect("/");
   } catch (error) {
     console.error("Error posting sign up info: ", error);
