@@ -52,5 +52,4 @@ exports.validators = [
       }
       return true;
     }),
-  body("code").trim().notEmpty().withMessage("Code input cannot be empty!"),
 ];

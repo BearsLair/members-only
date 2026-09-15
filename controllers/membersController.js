@@ -53,6 +53,12 @@ async function postCodePage(req, res) {
   const errors = validationResult(req);
 
   try {
+    if (!errors.isEmpty()) {
+      return res.status(400).render("code", {
+        errors: errors.array(), // Converts errors to array for iteration
+      });
+    }
+
     // No errors? Continue.
     res.redirect("/");
   } catch (error) {
