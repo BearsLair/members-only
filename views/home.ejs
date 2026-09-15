@@ -12,7 +12,7 @@
     <h3>Messages:</h3>
     <ol>
       <% locals.messages.forEach(msg => { %>
-        <p style="font-weight: bold;"><%= msg.title %> (<%= msg.date %>)</p>
+        <p style="font-weight: bold;">Anonymous - <%= msg.title %> (<%= msg.date %>)</p>
         <p><%= msg.message %></p>
       <%}); %>
     </ol>
