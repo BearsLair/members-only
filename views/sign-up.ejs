@@ -10,34 +10,44 @@
     <%- include("./partials/error.ejs") %>
 
     <form action="sign-up" method="POST">
-      <label for="firstname">First Name</label>
-      <input
-        id="firstname"
-        name="firstname"
-        value="<%= formData.firstname || '' %>"
-        placeholder="firstname"
-        type="text"
-      />
-      <label for="lastname">Last Name</label>
-      <input
-        id="lastname"
-        name="lastname"
-        value="<%= formData.lastname || '' %>"
-        placeholder="lastname"
-        type="text"
-      />
-      <label for="username">Username</label>
-      <input
-        id="username"
-        name="username"
-        value="<%= formData.username || '' %>"
-        placeholder="username"
-        type="text"
-      />
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" />
-      <label for="confirmpass">Confirm Password</label>
-      <input id="confirmpass" name="confirmpass" type="password" />
+      <div>
+        <label for="firstname">First Name</label>
+        <input
+          id="firstname"
+          name="firstname"
+          value="<%= formData.firstname || '' %>"
+          placeholder="firstname"
+          type="text"
+        />
+      </div>
+      <div>
+        <label for="lastname">Last Name</label>
+        <input
+          id="lastname"
+          name="lastname"
+          value="<%= formData.lastname || '' %>"
+          placeholder="lastname"
+          type="text"
+        />
+      </div>
+      <div>
+        <label for="username">Username</label>
+        <input
+          id="username"
+          name="username"
+          value="<%= formData.username || '' %>"
+          placeholder="username"
+          type="text"
+        />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
+      </div>
+      <div>
+        <label for="confirmpass">Confirm Password</label>
+        <input id="confirmpass" name="confirmpass" type="password" />
+      </div>
       <button type="submit">Submit</button>
     </form>
   </body>
