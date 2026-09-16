@@ -6,7 +6,6 @@ async function getHomePage(req, res) {
   try {
     // db functions must be called (e.g. getAllMessages())
     const messages = await db.getAllMessages();
-    console.log(messages);
     res.render("home", { messages: messages });
   } catch (error) {
     console.error("Error retrieving home page: ", error);
@@ -37,8 +36,6 @@ async function postSignUp(req, res) {
     // No errors? Continue.
     let data = req.body;
     data.password = bcrypt.hashSync(req.body.password, 10);
-
-    console.log("data input sent to db: ", data);
 
     db.postUserData(data);
 
@@ -73,10 +70,19 @@ async function postCodePage(req, res) {
   }
 }
 
+async function getLoginPage(req, res) {
+  try {
+    res.render("log-in");
+  } catch (error) {
+    console.error("Error rendering log in page", error);
+  }
+}
+
 module.exports = {
   getHomePage,
   getSignUp,
   postSignUp,
   getCodePage,
   postCodePage,
+  getLoginPage,
 };
