@@ -1,7 +1,6 @@
 const pool = require("./pool");
 
 async function getAllMessages() {
-  console.log("In database...");
   try {
     const { rows } = await pool.query("SELECT * FROM messages");
     return rows;
@@ -11,23 +10,31 @@ async function getAllMessages() {
 }
 
 async function postUserData(data) {
+  console.log("In post user data to db.");
   const { firstname, lastname, username, password } = data;
+  console.log(firstname, " ", lastname, " ", username, " ", password);
   const client = await pool.connect();
 
   try {
     await client.query("BEGIN");
 
     const result = await client.query(
-      "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id;",
+      "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id",
       [username, password],
     );
 
+    console.log("result returned from first query: ", result);
+
     const id = result.rows[0].id;
+
+    console.log("id from first query result: ", id);
 
     await client.query(
       "INSERT INTO userinfo (firstname, lastname, usersid) VALUES ($1, $2, $3)",
       [firstname, lastname, id],
     );
+
+    await client.query("COMMIT");
   } catch (error) {
     await client.query("ROLLBACK");
     console.error("error posting user details to db: ", error);
