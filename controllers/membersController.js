@@ -53,7 +53,7 @@ async function postSignUp(req, res) {
 
     db.postUserData(data);
 
-    res.redirect("/");
+    res.redirect("/log-in");
   } catch (error) {
     console.error("Error posting sign up info: ", error);
   }
