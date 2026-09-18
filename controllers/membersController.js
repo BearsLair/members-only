@@ -4,9 +4,15 @@ const db = require("../db/query");
 
 async function getHomePage(req, res) {
   try {
-    // db functions must be called (e.g. getAllMessages())
+    // not to self: db functions must be called (e.g. getAllMessages())
+    console.log("session user: ", req.user);
     const messages = await db.getAllMessages();
-    res.render("home", { messages: messages });
+    res.render("home", {
+      messages: messages,
+      firstname: req.user.firstname,
+      lastname: req.user.lastname,
+      member: req.user.member,
+    });
   } catch (error) {
     console.error("Error retrieving home page: ", error);
   }
