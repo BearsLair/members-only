@@ -16,6 +16,9 @@
       <% if (!member) {%>
     <a href="/code">Full Membership</a>
     <% } %>
+    <% if (firstname) {%>
+    <a href="/log-out">Log Out</a>
+    <% } %>
     <h3>Messages:</h3>
     <ol>
       <% messages.forEach(msg => { %>

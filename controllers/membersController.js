@@ -5,14 +5,22 @@ const db = require("../db/query");
 async function getHomePage(req, res) {
   try {
     // not to self: db functions must be called (e.g. getAllMessages())
-    console.log("session user: ", req.user);
     const messages = await db.getAllMessages();
-    res.render("home", {
-      messages: messages,
-      firstname: req.user.firstname,
-      lastname: req.user.lastname,
-      member: req.user.member,
-    });
+
+    if (req.user) {
+      res.render("home", {
+        messages: messages,
+        firstname: req.user.firstname,
+        lastname: req.user.lastname,
+        member: req.user.member,
+      });
+    } else {
+      res.render("home", {
+        messages: messages,
+        firstname: false,
+        member: false,
+      });
+    }
   } catch (error) {
     console.error("Error retrieving home page: ", error);
   }
@@ -88,6 +96,20 @@ async function getLoginPage(req, res) {
   }
 }
 
+// Passport supplies logout function
+async function getLogout(req, res, next) {
+  try {
+    req.logout((err) => {
+      if (err) {
+        return next(err);
+      }
+    });
+    res.redirect("/");
+  } catch (error) {
+    console.error("Error logging out", error);
+  }
+}
+
 module.exports = {
   getHomePage,
   getSignUp,
@@ -95,4 +117,5 @@ module.exports = {
   getCodePage,
   postCodePage,
   getLoginPage,
+  getLogout,
 };

@@ -26,4 +26,6 @@ indexRouter.post(
   }),
 );
 
+indexRouter.get("/log-out", membersController.getLogout);
+
 module.exports = indexRouter;
