@@ -70,6 +70,10 @@ async function postCodePage(req, res) {
     }
 
     // No errors? Continue.
+    const id = req.user.usersid;
+    console.log("id: ", id);
+    db.postUpgradeToMember(id);
+
     res.redirect("/");
   } catch (error) {
     console.error("Error posting code for verification: ", error);

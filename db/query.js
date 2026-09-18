@@ -43,4 +43,10 @@ async function postUserData(data) {
   }
 }
 
-module.exports = { getAllMessages, postUserData };
+async function postUpgradeToMember(id) {
+  await pool.query(`UPDATE userinfo SET member = true WHERE usersid = $1`, [
+    id,
+  ]);
+}
+
+module.exports = { getAllMessages, postUserData, postUpgradeToMember };
