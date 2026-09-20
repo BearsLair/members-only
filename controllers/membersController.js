@@ -4,7 +4,7 @@ const db = require("../db/query");
 
 async function getHomePage(req, res) {
   try {
-    // not to self: db functions must be called (e.g. getAllMessages())
+    // note to self: db functions must be called (e.g. getAllMessages())
     const messages = await db.getAllMessages();
 
     if (req.user) {
@@ -79,7 +79,6 @@ async function postCodePage(req, res) {
 
     // No errors? Continue.
     const id = req.user.usersid;
-    console.log("id: ", id);
     db.postUpgradeToMember(id);
 
     res.redirect("/");
