@@ -2,7 +2,9 @@ const pool = require("./pool");
 
 async function getAllMessages() {
   try {
-    const { rows } = await pool.query("SELECT * FROM messages");
+    const { rows } = await pool.query(
+      "SELECT title, date, message, firstname, lastname FROM messages INNER JOIN userinfo ON userinfo.usersid = messages.usersid",
+    );
     return rows;
   } catch (error) {
     console.error("Error getting all messages from db: ", error);

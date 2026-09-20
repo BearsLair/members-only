@@ -22,7 +22,7 @@
     <h3>Messages:</h3>
     <ol>
       <% messages.forEach(msg => { %>
-        <p style="font-weight: bold;">Anonymous - <%= msg.title %> (<%= msg.date %>)</p>
+        <p style="font-weight: bold;"><%= member ? (msg.firstname + " " + msg.lastname)  : "Anonymous" %> - <%= msg.title %> (<%= msg.date %>)</p>
         <p><%= msg.message %></p>
       <%}); %>
     </ol>
