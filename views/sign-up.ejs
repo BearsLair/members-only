@@ -7,6 +7,7 @@
   </head>
   <body>
     <h1>Sign Up Form</h1>
+    <a href="/">Back to Messages</a>
     <%- include("./partials/error.ejs") %>
 
     <form action="sign-up" method="POST">
@@ -47,6 +48,10 @@
       <div>
         <label for="confirmpass">Confirm Password</label>
         <input id="confirmpass" name="confirmpass" type="password" />
+      </div>
+      <div>
+        <label for="admin">Admin Password</label>
+        <input id="admin" name="admin" />
       </div>
       <button type="submit">Submit</button>
     </form>

@@ -13,8 +13,18 @@ async function getAllMessages() {
 
 async function postUserData(data) {
   console.log("In post user data to db.");
-  const { firstname, lastname, username, password } = data;
-  console.log(firstname, " ", lastname, " ", username, " ", password);
+  const { firstname, lastname, username, password, admin } = data;
+  console.log(
+    firstname,
+    " ",
+    lastname,
+    " ",
+    username,
+    " ",
+    password,
+    " ",
+    admin,
+  );
   const client = await pool.connect();
 
   try {
@@ -31,10 +41,17 @@ async function postUserData(data) {
 
     console.log("id from first query result: ", id);
 
-    await client.query(
-      "INSERT INTO userinfo (firstname, lastname, usersid) VALUES ($1, $2, $3)",
-      [firstname, lastname, id],
-    );
+    if (admin === true) {
+      await client.query(
+        "INSERT INTO userinfo (firstname, lastname, usersid, admin) VALUES ($1, $2, $3, $4)",
+        [firstname, lastname, id, admin],
+      );
+    } else {
+      await client.query(
+        "INSERT INTO userinfo (firstname, lastname, usersid) VALUES ($1, $2, $3)",
+        [firstname, lastname, id],
+      );
+    }
 
     await client.query("COMMIT");
   } catch (error) {

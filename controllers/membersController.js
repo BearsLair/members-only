@@ -49,6 +49,19 @@ async function postSignUp(req, res) {
 
     // No errors? Continue.
     let data = req.body;
+
+    if (req.body.admin === process.env.ADMIN_PASS) {
+      data.admin = true;
+    } else if (
+      req.body.admin !== process.env.ADMIN_PASS &&
+      req.body.admin !== ""
+    ) {
+      return res.status(400).render("sign-up", {
+        errors: [{ msg: "Wrong admin password." }], // Pass admin pass validation error
+        formData: req.body, // Passes back entered data so user doesn't re-enter inputs
+      });
+    }
+
     data.password = bcrypt.hashSync(req.body.password, 10);
 
     db.postUserData(data);
