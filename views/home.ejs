@@ -21,10 +21,14 @@
     <% } %>
     <h3>Messages:</h3>
     <ol>
+      <% if (messages.length === 0) {%>
+        <p>No messages yet.</p>
+        <% } else { %>
       <% messages.forEach(msg => { %>
         <p style="font-weight: bold;"><%= member ? (msg.firstname + " " + msg.lastname)  : "Anonymous" %> - <%= msg.title %> (<%= msg.date %>)</p>
         <p><%= msg.message %></p>
       <%}); %>
+      <% } %>
     </ol>
   </body>
 </html>
