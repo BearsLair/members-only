@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post a Message</title>
+  </head>
+  <body>
+    <h1>Post a Message</h1>
+    <form action="/message" method="POST">
+      <input name="usersid" value="<%= usersid %>" style="display: hidden" />
+      <div style="display: flex; flex-direction: column">
+        <label for="title">Title</label>
+        <input id="title" name="title" />
+        <label>Your Message</label>
+        <textarea></textarea>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </body>
+</html>
