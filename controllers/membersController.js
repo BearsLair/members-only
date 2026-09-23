@@ -109,6 +109,32 @@ async function getLogout(req, res, next) {
   }
 }
 
+async function getMessagePage(req, res) {
+  try {
+    res.render("message", { usersid: req.user.usersid });
+  } catch (error) {
+    console.error("Error retrieving message page", error);
+  }
+}
+
+async function postMessagePage(req, res) {
+  console.log(
+    "title: ",
+    req.body.title,
+    " message: ",
+    req.body.message,
+    " usersid: ",
+    req.body.usersid,
+  );
+  try {
+    await db.postMessage(req.body.title, req.body.message, req.body.usersid);
+
+    res.redirect("/");
+  } catch (error) {
+    console.error("Error posting message", error);
+  }
+}
+
 module.exports = {
   getHomePage,
   getSignUp,
@@ -117,4 +143,6 @@ module.exports = {
   postCodePage,
   getLoginPage,
   getLogout,
+  getMessagePage,
+  postMessagePage,
 };

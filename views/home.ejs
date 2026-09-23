@@ -8,13 +8,16 @@
   <body>
     <h1>Members Only Message Board</h1>
     <% if (firstname) { %>
-      <p>Welcome <%= firstname %> <%= lastname %>!</p>
-      <% } else { %>
-      <a href="/log-in">Log In</a>
-      <a href="/sign-up">Sign Up</a>
-      <% } %>
-      <% if (!member) {%>
+    <p>Welcome <%= firstname %> <%= lastname %>!</p>
+    <% } else { %>
+    <a href="/log-in">Log In</a>
+    <a href="/sign-up">Sign Up</a>
+    <% } %>
+    <% if (!member) {%>
     <a href="/code">Full Membership</a>
+    <% } %>
+    <% if (member) { %>
+    <a href="/message">Post New Message</a>
     <% } %>
     <% if (firstname) {%>
     <a href="/log-out">Log Out</a>

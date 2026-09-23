@@ -28,4 +28,8 @@ indexRouter.post(
 
 indexRouter.get("/log-out", membersController.getLogout);
 
+indexRouter.get("/message", membersController.getMessagePage);
+
+indexRouter.post("/message", membersController.postMessagePage);
+
 module.exports = indexRouter;

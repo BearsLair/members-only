@@ -8,12 +8,12 @@
   <body>
     <h1>Post a Message</h1>
     <form action="/message" method="POST">
-      <input name="usersid" value="<%= usersid %>" style="display: hidden" />
+      <input name="usersid" value="<%= usersid %>" hidden />
       <div style="display: flex; flex-direction: column">
         <label for="title">Title</label>
         <input id="title" name="title" />
-        <label>Your Message</label>
-        <textarea></textarea>
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message"></textarea>
         <button type="submit">Submit</button>
       </div>
     </form>

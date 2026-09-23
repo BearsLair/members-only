@@ -51,4 +51,20 @@ async function postUpgradeToMember(id) {
   ]);
 }
 
-module.exports = { getAllMessages, postUserData, postUpgradeToMember };
+async function postMessage(title, message, usersid) {
+  try {
+    await pool.query(
+      `INSERT INTO messages (title, message, usersid) VALUES ($1, $2, $3)`,
+      [title, message, usersid],
+    );
+  } catch (error) {
+    console.error("Error posting message to db: ", error);
+  }
+}
+
+module.exports = {
+  getAllMessages,
+  postUserData,
+  postUpgradeToMember,
+  postMessage,
+};
