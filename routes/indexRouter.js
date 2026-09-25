@@ -32,4 +32,6 @@ indexRouter.get("/message", membersController.getMessagePage);
 
 indexRouter.post("/message", membersController.postMessagePage);
 
+indexRouter.get("/delete/:id", membersController.delMessage);
+
 module.exports = indexRouter;

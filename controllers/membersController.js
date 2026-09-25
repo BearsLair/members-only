@@ -13,12 +13,14 @@ async function getHomePage(req, res) {
         firstname: req.user.firstname,
         lastname: req.user.lastname,
         member: req.user.member,
+        admin: req.user.admin,
       });
     } else {
       res.render("home", {
         messages: messages,
         firstname: false,
         member: false,
+        admin: false,
       });
     }
   } catch (error) {
@@ -148,6 +150,17 @@ async function postMessagePage(req, res) {
   }
 }
 
+async function delMessage(req, res) {
+  const id = req.params.id;
+
+  try {
+    await db.deleteMessage(id);
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 module.exports = {
   getHomePage,
   getSignUp,
@@ -158,4 +171,5 @@ module.exports = {
   getLogout,
   getMessagePage,
   postMessagePage,
+  delMessage,
 };

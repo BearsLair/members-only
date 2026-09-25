@@ -30,6 +30,9 @@
       <% messages.forEach(msg => { %>
         <p style="font-weight: bold;"><%= member ? (msg.firstname + " " + msg.lastname)  : "Anonymous" %> - <%= msg.title %> (<%= msg.date %>)</p>
         <p><%= msg.message %></p>
+        <% if (admin) {%>
+        <a href="/delete/<%= msg.id %>">DELETE</a>
+        <% } %>
       <%}); %>
       <% } %>
     </ol>

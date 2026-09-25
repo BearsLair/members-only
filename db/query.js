@@ -3,7 +3,7 @@ const pool = require("./pool");
 async function getAllMessages() {
   try {
     const { rows } = await pool.query(
-      "SELECT title, date, message, firstname, lastname FROM messages INNER JOIN userinfo ON userinfo.usersid = messages.usersid",
+      "SELECT messages.id AS id, title, date, message, firstname, lastname, admin FROM messages INNER JOIN userinfo ON userinfo.usersid = messages.usersid",
     );
     return rows;
   } catch (error) {
@@ -79,9 +79,18 @@ async function postMessage(title, message, usersid) {
   }
 }
 
+async function deleteMessage(id) {
+  try {
+    await pool.query(`DELETE FROM messages WHERE id = $1`, [id]);
+  } catch (error) {
+    console.error("Error deleting message from db: ", error);
+  }
+}
+
 module.exports = {
   getAllMessages,
   postUserData,
   postUpgradeToMember,
   postMessage,
+  deleteMessage,
 };
