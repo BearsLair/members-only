@@ -7,13 +7,18 @@
   </head>
   <body>
     <h1>Post a Message</h1>
+    <%- include("./partials/error.ejs") %>
     <form action="/message" method="POST">
       <input name="usersid" value="<%= usersid %>" hidden />
       <div style="display: flex; flex-direction: column">
         <label for="title">Title</label>
-        <input id="title" name="title" />
+        <input id="title" name="title" value="<%= formData.title || '' %>" />
         <label for="message">Your Message</label>
-        <textarea id="message" name="message"></textarea>
+        <textarea
+          id="message"
+          name="message"
+          value="<%= formData.message || '' %>"
+        ></textarea>
         <button type="submit">Submit</button>
       </div>
     </form>

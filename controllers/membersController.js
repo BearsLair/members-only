@@ -126,22 +126,28 @@ async function getLogout(req, res, next) {
 
 async function getMessagePage(req, res) {
   try {
-    res.render("message", { usersid: req.user.usersid });
+    res.render("message", { usersid: req.user.usersid, formData: {} });
   } catch (error) {
     console.error("Error retrieving message page", error);
   }
 }
 
 async function postMessagePage(req, res) {
-  console.log(
-    "title: ",
-    req.body.title,
-    " message: ",
-    req.body.message,
-    " usersid: ",
-    req.body.usersid,
-  );
   try {
+    //retrieve validation errors from request
+    const errors = validationResult(req);
+
+    // Stop execution and display errors if errors found
+    if (!errors.isEmpty()) {
+      return res.status(400).render("message", {
+        errors: errors.array(), // Converts errors to array for iteration
+        formData: req.body, // Passes back entered data so user doesn't re-enter inputs
+        usersid: req.user.usersid,
+      });
+    }
+
+    // No errors? Continue.
+
     await db.postMessage(req.body.title, req.body.message, req.body.usersid);
 
     res.redirect("/");

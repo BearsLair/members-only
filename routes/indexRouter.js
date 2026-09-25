@@ -4,6 +4,7 @@ const membersController = require("../controllers/membersController");
 // validators must be destructured
 const { validators } = require("../validators/validators");
 const { codeValidator } = require("../validators/codevalidator");
+const { messageValidators } = require("../validators/message_validation");
 const passport = require("passport");
 
 indexRouter.get("/", membersController.getHomePage);
@@ -30,7 +31,11 @@ indexRouter.get("/log-out", membersController.getLogout);
 
 indexRouter.get("/message", membersController.getMessagePage);
 
-indexRouter.post("/message", membersController.postMessagePage);
+indexRouter.post(
+  "/message",
+  messageValidators,
+  membersController.postMessagePage,
+);
 
 indexRouter.get("/delete/:id", membersController.delMessage);
 
