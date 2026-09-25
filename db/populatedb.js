@@ -1,3 +1,5 @@
+// Script for creation of postgreSQL database
+
 const SQL = `
     
 CREATE TABLE IF NOT EXISTS users (
